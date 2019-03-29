@@ -1,0 +1,400 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <!--Plugin CSS file with desired skin-->
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/ion-rangeslider/2.3.0/css/ion.rangeSlider.min.css"/>
+
+    <!--jQuery-->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+    <!--Plugin JavaScript file-->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/ion-rangeslider/2.3.0/js/ion.rangeSlider.min.js"></script>
+    <style>
+        body {
+            background-color: black;
+        }
+
+        .slider {
+            -webkit-appearance: none;
+            position: absolute;
+            top: -2px;
+            width: 100%;
+            height: 100%;
+            background: #d3d3d3;
+            outline: none;
+            opacity: 0.7;
+            -webkit-transition: .2s;
+            transition: opacity .2s;
+            left: 0;
+            background-color: transparent;
+        }
+
+        .slider:hover {
+            opacity: 1;
+        }
+
+        .slider::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            appearance: none;
+            width: 5px;
+            height: 500px;
+            background: #4CAF50;
+            cursor: pointer;
+
+        }
+
+        .slider::-moz-range-thumb {
+            width: 5px;
+            height: 500px;
+            background: #4CAF50;
+            cursor: pointer;
+        }
+
+        .irs--big {
+            /*position: absolute;*/
+            /*height: 100%;*/
+            /*top: 0;*/
+        }
+
+        .irs--big .irs-bar {
+            background: transparent;
+            border: none;
+            position: absolute;
+        }
+
+        .wrap {
+            display: none;
+            margin-top: 10%;
+            font-size: 0;
+            position: relative;
+        }
+
+        .video-wrap {
+            position: relative;
+            display: inline-block;
+            height: 500px;
+            overflow: hidden;
+        }
+
+        .myVideo {
+            position: absolute;
+            height: 100%;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+
+        .video-wrap-1 {
+            width: 50%;
+        }
+
+        .video-wrap-2 {
+            width: 50%;
+        }
+
+        #video1 {
+            width: 100%;
+            height: auto;
+        }
+
+        #video2 {
+            width: 100%;
+            height: auto;
+        }
+
+        .first, .second, .third, .fifth, .sixth, .seventh {
+            display: none;
+            font-size: 0;
+        }
+
+        .first .video-wrap-1 {
+            width: 100%;
+        }
+
+        .first .video1 {
+            width: 100%;
+        }
+
+        .second .video-wrap-1 {
+            width: 16.8%;
+        }
+
+        .second .video-wrap-2 {
+            width: 83.2%;
+        }
+
+        .second .video1 {
+            height: 100%;
+            width: auto;
+        }
+
+        .second .video2 {
+            width: 100%;
+            height: auto;
+        }
+
+        .third .video-wrap-1 {
+            width: 33.5%;
+        }
+
+        .third .video-wrap-2 {
+            width: 66.5%;
+        }
+
+        .third .video1 {
+            height: 100%;
+            width: auto;
+        }
+
+        .third .video2 {
+            width: 100%;
+            height: auto;
+        }
+
+        .fourth .video-wrap-1 {
+            width: 50%;
+        }
+
+        .fourth .video-wrap-2 {
+            width: 50%;
+        }
+
+        .fourth .video1 {
+            height: auto;
+            width: 100%;
+        }
+
+        .fourth .video2 {
+            width: 100%;
+            height: auto;
+        }
+
+        .fifth .video-wrap-1 {
+            width: 66.7%;
+        }
+
+        .fifth .video-wrap-2 {
+            width: 33.3%;
+        }
+
+        .fifth .video1 {
+            height: auto;
+            width: 100%;
+        }
+
+        .fifth .video2 {
+            width: auto;
+            height: 100%;
+        }
+
+        .sixth .video-wrap-1 {
+            width: 83.2%;
+        }
+
+        .sixth .video-wrap-2 {
+            width: 16.8%;
+        }
+
+        .sixth .video1 {
+            height: auto;
+            width: 100%;
+        }
+
+        .sixth .video2 {
+            width: auto;
+            height: 100%;
+        }
+
+        .seventh .video-wrap-1 {
+            width: 100%;
+        }
+
+        .seventh .video1 {
+            height: auto;
+            width: 100%;
+        }
+
+        .loader {
+            border: 16px solid #f3f3f3;
+            border-radius: 50%;
+            border-top: 16px solid #3498db;
+            width: 120px;
+            height: 120px;
+            -webkit-animation: spin 2s linear infinite; /* Safari */
+            animation: spin 2s linear infinite;
+            position: absolute;
+            top: 400px;
+            left: 45%;
+            transform: translate(-45%, -400px);
+        }
+
+        /* Safari */
+        @-webkit-keyframes spin {
+            0% {
+                -webkit-transform: rotate(0deg);
+            }
+            100% {
+                -webkit-transform: rotate(360deg);
+            }
+        }
+
+        @keyframes spin {
+            0% {
+                transform: rotate(0deg);
+            }
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+
+        /* The Modal (background) */
+        .modal {
+            /*display: none; !* Hidden by default *!*/
+            position: fixed; /* Stay in place */
+            z-index: 1; /* Sit on top */
+            padding-top: 100px; /* Location of the box */
+            left: 0;
+            top: 0;
+            width: 100%; /* Full width */
+            height: 100%; /* Full height */
+            overflow: auto; /* Enable scroll if needed */
+            background-color: rgb(0, 0, 0); /* Fallback color */
+            background-color: rgba(0, 0, 0, 0.4); /* Black w/ opacity */
+        }
+
+        /* Modal Content */
+
+    </style>
+</head>
+<body>
+<div id="myModal" class="modal">
+    <div class="loader"></div>
+</div>
+<div class="wrap">
+    <div class="first box">
+        <div class="video-wrap video-wrap-1">
+            <video autoplay muted loop class="myVideo video1">
+                <source src="video/1.mp4" type="video/mp4">
+            </video>
+        </div>
+    </div>
+    <div class="second box">
+        <div class="video-wrap video-wrap-1">
+            <video autoplay muted loop class="myVideo video1">
+                <source src="video/2.mp4" type="video/mp4">
+            </video>
+        </div>
+        <div class="video-wrap video-wrap-2">
+            <video autoplay muted loop class="myVideo video2">
+                <source src="./video/3.mp4" type="video/mp4">
+            </video>
+        </div>
+    </div>
+    <div class="third box">
+        <div class="video-wrap video-wrap-1">
+            <video autoplay muted loop class="myVideo video1">
+                <source src="video/4.mp4" type="video/mp4">
+            </video>
+        </div>
+        <div class="video-wrap video-wrap-2">
+            <video autoplay muted loop class="myVideo video2">
+                <source src="./video/5.mp4" type="video/mp4">
+            </video>
+        </div>
+    </div>
+    <div class="fourth box">
+        <div class="video-wrap video-wrap-1">
+            <video autoplay muted loop class="myVideo video1">
+                <source src="video/6.mp4" type="video/mp4">
+            </video>
+        </div>
+        <div class="video-wrap video-wrap-2">
+            <video autoplay muted loop class="myVideo video2">
+                <source src="./video/7.mp4" type="video/mp4">
+            </video>
+        </div>
+    </div>
+    <div class="fifth box">
+        <div class="video-wrap video-wrap-1">
+            <video autoplay muted loop class="myVideo video1">
+                <source src="video/8.mp4" type="video/mp4">
+            </video>
+        </div>
+        <div class="video-wrap video-wrap-2">
+            <video autoplay muted loop class="myVideo video2">
+                <source src="./video/9.mp4" type="video/mp4">
+            </video>
+        </div>
+    </div>
+    <div class="sixth box">
+        <div class="video-wrap video-wrap-1">
+            <video autoplay muted loop class="myVideo video1">
+                <source src="video/10.mp4" type="video/mp4">
+            </video>
+        </div>
+        <div class="video-wrap video-wrap-2">
+            <video autoplay muted loop class="myVideo video2">
+                <source src="./video/11.mp4" type="video/mp4">
+            </video>
+        </div>
+    </div>
+    <div class="seventh box">
+        <div class="video-wrap video-wrap-1">
+            <video autoplay muted loop class="myVideo video1">
+                <source src="video/12.mp4" type="video/mp4">
+            </video>
+        </div>
+    </div>
+    <input type="range" min="1" max="7" value="4" class="slider" id="myRange">
+</div>
+<script>
+    let count = 0;
+    $(".myVideo").on("loadeddata", function () {
+        count++;
+        if (count == 12) {
+            $("#myModal").css("display", "none");
+            $(".wrap").css("display", "block");
+            const range = $('#myRange');
+            range.change(function (e) {
+                let value = +$(this).val();
+                console.log(typeof (value));
+                $(".box").css("display", "none");
+                switch (value) {
+                    case 1:
+                        $(".first").css("display", "block");
+                        break;
+                    case 2:
+                        $(".second").css("display", "block");
+                        break;
+                    case 3:
+                        $(".third").css("display", "block");
+                        break;
+                    case 4:
+                        $(".fourth").css("display", "block");
+                        break;
+                    case 5:
+                        $(".fifth").css("display", "block");
+                        break;
+                    case 6:
+                        $(".sixth").css("display", "block");
+                        break;
+                    case 7:
+                        $(".seventh").css("display", "block");
+                        break;
+                }
+            });
+        }
+    });
+
+    // $(".wrap").css("display", "none");
+
+
+</script>
+</body>
+</html>

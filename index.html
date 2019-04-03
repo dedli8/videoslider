@@ -5,16 +5,9 @@
     <meta name="viewport"
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
-    <!--Plugin CSS file with desired skin-->
-    <link rel="stylesheet"
-          href="https://cdnjs.cloudflare.com/ajax/libs/ion-rangeslider/2.3.0/css/ion.rangeSlider.min.css"/>
-
+    <title>SliderVideo</title>
     <!--jQuery-->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-
-    <!--Plugin JavaScript file-->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/ion-rangeslider/2.3.0/js/ion.rangeSlider.min.js"></script>
     <style>
         body {
             background-color: black;
@@ -90,23 +83,6 @@
             transform: translate(-50%, -50%);
         }
 
-        .video-wrap-1 {
-            width: 50%;
-        }
-
-        .video-wrap-2 {
-            width: 50%;
-        }
-
-        #video1 {
-            width: 100%;
-            height: auto;
-        }
-
-        #video2 {
-            width: 100%;
-            height: auto;
-        }
 
         .first, .second, .third, .fifth, .sixth, .seventh {
             display: none;
@@ -119,6 +95,7 @@
 
         .first .video1 {
             width: 100%;
+            height: auto;
         }
 
         .second .video-wrap-1 {
@@ -280,14 +257,14 @@
     <div class="first box">
         <div class="video-wrap video-wrap-1">
             <video autoplay muted loop class="myVideo video1">
-                <source src="video/1.mp4" type="video/mp4">
+                <source src="./video/1.mp4" type="video/mp4">
             </video>
         </div>
     </div>
     <div class="second box">
         <div class="video-wrap video-wrap-1">
             <video autoplay muted loop class="myVideo video1">
-                <source src="video/2.mp4" type="video/mp4">
+                <source src="./video/2.mp4" type="video/mp4">
             </video>
         </div>
         <div class="video-wrap video-wrap-2">
@@ -299,7 +276,7 @@
     <div class="third box">
         <div class="video-wrap video-wrap-1">
             <video autoplay muted loop class="myVideo video1">
-                <source src="video/4.mp4" type="video/mp4">
+                <source src="./video/4.mp4" type="video/mp4">
             </video>
         </div>
         <div class="video-wrap video-wrap-2">
@@ -311,7 +288,7 @@
     <div class="fourth box">
         <div class="video-wrap video-wrap-1">
             <video autoplay muted loop class="myVideo video1">
-                <source src="video/6.mp4" type="video/mp4">
+                <source src="./video/6.mp4" type="video/mp4">
             </video>
         </div>
         <div class="video-wrap video-wrap-2">
@@ -323,7 +300,7 @@
     <div class="fifth box">
         <div class="video-wrap video-wrap-1">
             <video autoplay muted loop class="myVideo video1">
-                <source src="video/8.mp4" type="video/mp4">
+                <source src="./video/8.mp4" type="video/mp4">
             </video>
         </div>
         <div class="video-wrap video-wrap-2">
@@ -335,7 +312,7 @@
     <div class="sixth box">
         <div class="video-wrap video-wrap-1">
             <video autoplay muted loop class="myVideo video1">
-                <source src="video/10.mp4" type="video/mp4">
+                <source src="./video/10.mp4" type="video/mp4">
             </video>
         </div>
         <div class="video-wrap video-wrap-2">
@@ -347,7 +324,7 @@
     <div class="seventh box">
         <div class="video-wrap video-wrap-1">
             <video autoplay muted loop class="myVideo video1">
-                <source src="video/12.mp4" type="video/mp4">
+                <source src="./video/9.mp4" type="video/mp4">
             </video>
         </div>
     </div>
@@ -355,7 +332,7 @@
 </div>
 <script>
     let count = 0;
-    $(".myVideo").on("loadeddata", function () {
+    $(".myVideo").on("canplay", function () {
         count++;
         if (count == 12) {
             $("#myModal").css("display", "none");
